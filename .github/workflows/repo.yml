@@ -20,8 +20,8 @@ jobs:
 
       - name: Update Repo
         run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
           git clone https://${{ secrets.PAT }}@github.com/burhancodes/materialgram-deb.git
           VAR=$(curl -s https://raw.githubusercontent.com/burhancodes/materialgram-deb-builder/master/latestversion)
           echo "VAR=$VAR" >> $GITHUB_ENV

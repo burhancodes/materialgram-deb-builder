@@ -23,14 +23,3 @@ jobs:
         run: |
           bash update.sh
           git push
-
-      - name: Update Repo
-        run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git clone https://${{ secrets.PAT }}@github.com/burhancodes/materialgram-deb.git
-          mv materialgram.deb materialgram-deb/dists/stable/main/binary-amd64/
-          cd materialgram-deb/dists/stable/main/binary-amd64/
-          dpkg-scanpackages . /dev/null | gzip -9c > Packages.gz
-          git add .
-          git push main

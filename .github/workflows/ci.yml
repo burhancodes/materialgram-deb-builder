@@ -1,9 +1,11 @@
 name: Update DEB-PKG
 
 on:
+  workflow_dispatch:
+  
   schedule:
     - cron: '0 12 4,8,12,16,20,24,28 * *'
-  workflow_dispatch:
+
 permissions:
   contents: write
 

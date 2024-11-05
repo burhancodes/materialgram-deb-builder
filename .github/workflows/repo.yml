@@ -24,6 +24,8 @@ jobs:
 
       - name: Update materialgram-deb repo
         run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
           rm -rf materialgram-deb/dists/stable/main/binary-amd64/Packages.gz
           rm -rf materialgram-deb/pool/main/materialgram/*.deb
           VAR=$(curl -s https://raw.githubusercontent.com/burhancodes/materialgram-deb-builder/master/latestversion)
@@ -34,8 +36,6 @@ jobs:
           cd materialgram-deb
           dpkg-scanpackages pool/main /dev/null | gzip -9c > dists/stable/main/binary-amd64/Packages.gz
           cd ..
-          git config --global user.email "action@github.com"
-          git config --global user.name "GitHub Action"
           git add .
           git commit -m "Update DEB package to version $VAR"
           git push origin main

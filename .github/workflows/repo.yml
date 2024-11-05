@@ -33,13 +33,3 @@ jobs:
           git add .
           git commit -m "Update DEB package to version $VAR"
           git push origin main
-
-
-# Generate the Packages.gz file in the dists directory
-mkdir -p materialgram-deb/dists/stable/main/binary-all
-
-
-# Go back to the root directory
-cd ../../../..
-           
-          

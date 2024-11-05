@@ -33,7 +33,7 @@ jobs:
           mv materialgram.deb materialgram-deb/pool/main/materialgram/materialgram-${VAR}.amd64.deb
           cd materialgram-deb
           dpkg-scanpackages pool/main /dev/null | gzip -9c > dists/stable/main/binary-amd64/Packages.gz
-          zcat materialgram-deb/dists/stable/main/binary-amd64/Packages.gz
+          zcat dists/stable/main/binary-amd64/Packages.gz
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"
           git add .

@@ -26,9 +26,10 @@ jobs:
           VAR=$(curl -s https://raw.githubusercontent.com/burhancodes/materialgram-deb-builder/master/latestversion)
           echo "VAR=$VAR" >> $GITHUB_ENV
           curl -L https://github.com/burhancodes/materialgram-deb-builder/raw/master/materialgram.deb -o materialgram.deb
-          mv materialgram.deb materialgram-deb/dists/stable/main/binary-all/materialgram-${VAR}.bin-all.deb
+          mv materialgram.deb materialgram-deb/dists/stable/main/binary-all/materialgram-${VAR}.all.deb
           cd materialgram-deb/dists/stable/main/binary-all/
           dpkg-scanpackages . /dev/null | gzip -9c > Packages.gz
+          mv materialgram-${VAR}.all.deb ../../../../pool/main/materialgram/materialgram-${VAR}.all.deb
           cd ../../../../
           git add .
           git commit -m "Update DEB package to version $VAR"

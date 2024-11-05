@@ -30,7 +30,7 @@ jobs:
           echo "VAR=$VAR" >> $GITHUB_ENV
           curl -L https://github.com/burhancodes/materialgram-deb-builder/raw/master/materialgram.deb -o materialgram.deb
           mkdir -p materialgram-deb/pool/main/materialgram
-          mv materialgram.deb materialgram-deb/pool/main/materialgram/materialgram-${VAR}.all.deb
+          mv materialgram.deb materialgram-deb/pool/main/materialgram/materialgram-${VAR}.amd64.deb
           dpkg-scanpackages materialgram-deb/pool/main/materialgram /dev/null | gzip -9c > materialgram-deb/dists/stable/main/binary-amd64/Packages.gz
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"

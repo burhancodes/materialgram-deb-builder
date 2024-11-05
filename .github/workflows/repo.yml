@@ -29,9 +29,10 @@ jobs:
           mv materialgram.deb materialgram-deb/dists/stable/main/binary-amd64/materialgram-${VAR}.amd64.deb
           cd materialgram-deb/dists/stable/main/binary-amd64/
           dpkg-scanpackages . /dev/null | gzip -9c > Packages.gz
-          cd ../../../..
+          cd ../../../../
           git add .
-          git push main
+          git commit -m "Update DEB package to version $VAR"
+          git push origin main
 
 
            

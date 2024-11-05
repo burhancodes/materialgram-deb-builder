@@ -99,7 +99,7 @@ sed -i 's/Name=materialgram/Name=Materialgram/g' materialgram/usr/share/applicat
 dpkg-deb -b materialgram
 
 #Commit changes
-git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-git config --local user.name "github-actions[bot]"
+git config --global user.email "action@github.com"
+git config --global user.name "GitHub Action"
 git add latestversion materialgram.deb
 git commit -m "$LATEST_VERSION"

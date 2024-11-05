@@ -26,6 +26,7 @@ jobs:
           VAR=$(curl -s https://raw.githubusercontent.com/burhancodes/materialgram-deb-builder/master/latestversion)
           echo "VAR=$VAR" >> $GITHUB_ENV
           curl -L https://github.com/burhancodes/materialgram-deb-builder/raw/master/materialgram.deb -o materialgram.deb
+          mkdir -p materialgram-deb/pool/main/materialgram
           mv materialgram.deb materialgram-deb/pool/main/materialgram/materialgram-${VAR}.all.deb
           cd materialgram-deb/pool/main/materialgram
           dpkg-scanpackages . /dev/null | gzip -9c > ../../../dists/stable/main/binary-all/Packages.gz

@@ -15,22 +15,22 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout repo
+      - name: Checkout materialgram-deb repo
         uses: actions/checkout@v4
-
-      - name: Update Repo
+        with:
+          repository: burhancodes/materialgram-deb
+          token: ${{ secrets.PAT }}
+          path: materialgram-deb
         run: |
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
-          git clone https://${{ secrets.PAT }}@github.com/burhancodes/materialgram-deb.git
           VAR=$(curl -s https://raw.githubusercontent.com/burhancodes/materialgram-deb-builder/master/latestversion)
           echo "VAR=$VAR" >> $GITHUB_ENV
           curl -L https://github.com/burhancodes/materialgram-deb-builder/raw/master/materialgram.deb -o materialgram.deb
           mkdir -p materialgram-deb/pool/main/materialgram
           mv materialgram.deb materialgram-deb/pool/main/materialgram/materialgram-${VAR}.all.deb
-          cd materialgram-deb/pool/main/materialgram
-          dpkg-scanpackages . /dev/null | gzip -9c > ../../../dists/stable/main/binary-all/Packages.gz
-          cd ../../../../
+          dpkg-scanpackages materialgram-deb/pool/main/materialgram /dev/null | gzip -9c > materialgram-deb/dists/stable/main/binary-all/Packages.gz
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          cd materialgram-deb
           git add .
           git commit -m "Update DEB package to version $VAR"
           git push origin main

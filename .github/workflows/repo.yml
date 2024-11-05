@@ -31,10 +31,11 @@ jobs:
           curl -L https://github.com/burhancodes/materialgram-deb-builder/raw/master/materialgram.deb -o materialgram.deb
           mkdir -p materialgram-deb/pool/main/materialgram
           mv materialgram.deb materialgram-deb/pool/main/materialgram/materialgram-${VAR}.amd64.deb
-          dpkg-scanpackages materialgram-deb/pool/main/materialgram /dev/null | gzip -9c > materialgram-deb/dists/stable/main/binary-amd64/Packages.gz
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
           cd materialgram-deb
+          dpkg-scanpackages pool/main /dev/null | gzip -9c > dists/stable/main/binary-amd64/Packages.gz
+          cd ..
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
           git add .
           git commit -m "Update DEB package to version $VAR"
           git push origin main

@@ -21,6 +21,8 @@ jobs:
           repository: burhancodes/materialgram-deb
           token: ${{ secrets.PAT }}
           path: materialgram-deb
+
+      - name: Update materialgram-deb repo
         run: |
           VAR=$(curl -s https://raw.githubusercontent.com/burhancodes/materialgram-deb-builder/master/latestversion)
           echo "VAR=$VAR" >> $GITHUB_ENV

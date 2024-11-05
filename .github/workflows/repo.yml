@@ -6,6 +6,9 @@ on:
     types:
       - completed
 
+permissions:
+  contents: write
+
 jobs:
   update:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
@@ -26,6 +29,7 @@ jobs:
           mv materialgram.deb materialgram-deb/dists/stable/main/binary-amd64/materialgram-${VAR}.amd64.deb
           cd materialgram-deb/dists/stable/main/binary-amd64/
           dpkg-scanpackages . /dev/null | gzip -9c > Packages.gz
+          cd ../../../..
           git add .
           git push main
 
